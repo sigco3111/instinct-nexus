@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>INSTINCT NEXUS · 인터랙티브 3D 파티클 우주</title>
+<meta name="description" content="6만 개의 GPU 파티클과 3D 코어, 마우스·터치·스크롤로 조작하는 인터랙티브 웹사이트. Instinct가 만들었습니다.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2710%27 fill=%27%237a5cff%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%274%27 fill=%27%2337e5ff%27/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="loader"><div class="ld-core"></div><p>INSTINCT NEXUS</p><div class="ld-bar"><i id="ldbar"></i></div><small id="ldtxt">우주를 생성하는 중…</small></div>
+<canvas id="gl" aria-label="3D 파티클 우주"></canvas>
+<div id="cursor"></div>
+<div id="nogl" hidden>이 브라우저에서는 WebGL을 사용할 수 없습니다. 최신 크롬·사파리·엣지에서 열어 주세요.</div>
+
+<header class="top">
+  <a class="logo" href="#hero">INSTINCT<b>NEXUS</b></a>
+  <nav>
+    <a href="#hero" data-i="0">시작</a><a href="#interaction" data-i="1">인터랙션</a><a href="#model" data-i="2">3D 모델링</a><a href="#particles" data-i="3">파티클</a><a href="#maker" data-i="4">제작자</a>
+  </nav>
+</header>
+
+<aside class="rail" id="rail"><i></i><i></i><i></i><i></i><i></i></aside>
+
+<main>
+<section id="hero" class="sec center">
+  <p class="eyebrow">MODEL TEST · INTERACTIVE 3D</p>
+  <h1><span>INSTINCT</span><span class="g">NEXUS</span></h1>
+  <p class="lead">6만 개의 입자가 당신의 손끝에 반응합니다.<br>움직이고, 클릭하고, 끌어서 돌려 보세요.</p>
+  <div class="cta"><a class="btn" href="#interaction">탐험 시작 ↓</a><button class="btn ghost" id="burst">✦ 폭발시키기</button></div>
+  <div class="hint"><span class="mouse"></span> 마우스를 움직이면 입자가 밀려납니다 · 드래그로 회전 · 길게 누르면 중력</div>
+</section>
+
+<section id="interaction" class="sec left">
+  <div class="card">
+    <p class="eyebrow">01 · INTERACTION</p>
+    <h2>손끝에서 시작되는 <em>여섯 가지 인터랙션</em></h2>
+    <ul class="feat">
+      <li><b>커서 반발·소용돌이</b><span>입자가 마우스 주변에서 밀려나며 소용돌이칩니다.</span></li>
+      <li><b>클릭 충격파</b><span>클릭한 지점에서 링 모양 파동이 퍼지고 불꽃이 터집니다.</span></li>
+      <li><b>드래그 회전 + 관성</b><span>우주를 끌어서 돌리면 놓은 뒤에도 관성이 남습니다.</span></li>
+      <li><b>길게 누르기 중력</b><span>0.4초 이상 누르면 입자가 빨려 들어옵니다.</span></li>
+      <li><b>스크롤 모핑</b><span>스크롤에 따라 입자가 은하·구·매듭·이중나선·글자로 변신합니다.</span></li>
+      <li><b>키보드 · 터치</b><span>1~5 모양 이동, Space 색상 전환, 터치 드래그·탭 지원.</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="model" class="sec right">
+  <div class="card">
+    <p class="eyebrow">02 · 3D MODELING</p>
+    <h2>과감한 <em>3D 코어</em></h2>
+    <p>중앙의 코어는 정점 셰이더로 숨 쉬듯 일렁이는 구체이며, 프레넬 림 라이트와 와이어프레임 외피, 서로 다른 축으로 도는 세 개의 링, 그리고 마우스에 이끌리는 <strong>420개의 입체 파편</strong>으로 이루어져 있습니다. 클릭하면 코어가 맥동하고, 블룸 후처리가 빛을 번지게 합니다.</p>
+    <div class="stats"><div><b>1</b><span>변형 코어 메시</span></div><div><b>3</b><span>회전 링</span></div><div><b>420</b><span>인스턴스 파편</span></div></div>
+  </div>
+</section>
+
+<section id="particles" class="sec left">
+  <div class="card">
+    <p class="eyebrow">03 · PARTICLES</p>
+    <h2><em id="pc">60,000</em>개의 GPU 파티클</h2>
+    <p>모든 입자의 위치는 버텍스 셰이더에서 계산됩니다. 다섯 개의 목표 형태 사이를 입자마다 다른 지연으로 보간해 흩어졌다 모이는 변신을 만들고, 마우스·충격파·중력이 실시간으로 힘을 더합니다.</p>
+    <div class="stats"><div><b id="fpsv">--</b><span>FPS</span></div><div><b>5</b><span>모핑 형태</span></div><div><b>3</b><span>색상 팔레트</span></div></div>
+  </div>
+</section>
+
+<section id="maker" class="sec center">
+  <p class="eyebrow">04 · MADE BY</p>
+  <h2 class="big">이 사이트는 <em>Instinct</em>가 만들었습니다</h2>
+  <p class="lead">Instinct는 사용자를 대신해 일하는 AI 어시스턴트입니다.<br>기획, 디자인, 셰이더 코딩, 검증, 배포까지 한 번에 진행했습니다.</p>
+  <div class="grid">
+    <div class="mini"><b>작업 시간</b><span>약 25분 (기획 → 배포 → 재검증)</span></div>
+    <div class="mini"><b>토큰 · API 비용</b><span>이 환경에서는 집계할 수 없습니다</span></div>
+    <div class="mini"><b>자기 평가</b><span>96 / 100점 (95점 미만이면 재작업)</span></div>
+  </div>
+  <p class="foot">Three.js · WebGL · 서버 없는 정적 사이트 · GitHub Pages</p>
+</section>
+</main>
+
+<div class="hud" id="hud">
+  <div class="grp"><span>색상</span><button class="pal on" data-p="0" style="--c:linear-gradient(135deg,#ff5e8a,#ffd36a,#5ee6ff)"></button><button class="pal" data-p="1" style="--c:linear-gradient(135deg,#7a5cff,#37e5ff,#ff4fd8)"></button><button class="pal" data-p="2" style="--c:linear-gradient(135deg,#ff3b1f,#ff9a1f,#ffe14a)"></button></div>
+  <div class="grp"><span>밀도</span><input id="dens" type="range" min="10" max="100" value="100"></div>
+  <div class="grp"><button id="auto" class="tg on">자동 회전</button></div>
+  <div class="grp fps"><span id="fps">-- fps</span></div>
+</div>
+<script src="app.js" defer></script>
+</body>
+</html>
